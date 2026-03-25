@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trevix — Social Media Analytics for Local Business</title>
+<title>Trevix</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23080808'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Inter,sans-serif' font-size='18' font-weight='800' fill='%233b82f6'>T</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -206,7 +207,7 @@ h2.section-title {
 }
 .problem-card { background: var(--card); padding: 36px 32px; border-right: 1px solid var(--border); transition: background .2s, box-shadow .2s; }
 .problem-card:last-child { border-right: none; }
-.problem-card:hover { background: var(--card-hover); box-shadow: inset 0 0 30px rgba(255,255,255,0.04); }
+.problem-card:hover { background: var(--card); }
 .problem-icon { width: 40px; height: 40px; border-radius: 8px; background: rgba(59,130,246,0.1); border: 1px solid var(--blue-border); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--blue-light); }
 .problem-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 10px; color: var(--text); line-height: 1.4; }
 .problem-card p { font-size: 13px; color: var(--text-2); line-height: 1.68; }
@@ -301,16 +302,16 @@ h2.section-title {
   border-radius: var(--radius-lg); padding: 30px 24px; position: relative;
   transition: border-color .2s;
 }
-.pricing-card.float-card-1 { animation: float-a 3.2s ease-in-out infinite; margin-top: 10px; }
-.pricing-card.float-card-2 { animation: float-b 2.8s ease-in-out infinite; }
-.pricing-card.float-card-3 { animation: float-c 3.6s ease-in-out infinite; margin-top: 10px; }
-.pricing-card.float-card-4 { animation: float-d 4.0s ease-in-out 0.6s infinite; margin-top: 10px; }
+.pricing-card.float-card-1 { margin-top: 10px; }
+.pricing-card.float-card-2 { }
+.pricing-card.float-card-3 { margin-top: 10px; }
+.pricing-card.float-card-4 { margin-top: 10px; }
 .pricing-card:hover { border-color: var(--border-hi); }
 
 /* Starter (popular) — white inverted card */
 .pricing-card.popular {
   background: #ffffff; border-color: #ffffff; color: #000000; z-index: 2;
-  animation: float-popular 2.8s ease-in-out infinite, popular-glow-white 2.8s ease-in-out infinite;
+  animation: popular-glow-white 2.8s ease-in-out infinite;
 }
 .pricing-card.popular:hover { border-color: #e8e8e8; }
 .pricing-card.popular h3,
@@ -469,6 +470,7 @@ h2.section-title {
 
 /* ── CTA ── */
 #cta { padding: 100px 0; background: var(--bg); position: relative; overflow: hidden; }
+#cta-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; display: block; }
 #cta::before, #cta::after { content: ''; position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; }
 #cta::before { width: 600px; height: 600px; background: radial-gradient(circle,rgba(59,130,246,0.06) 0%,transparent 70%); top: -200px; left: -100px; animation: mesh-drift-1 12s ease-in-out infinite alternate; }
 #cta::after { width: 500px; height: 500px; background: radial-gradient(circle,rgba(59,130,246,0.04) 0%,transparent 70%); bottom: -150px; right: -50px; animation: mesh-drift-2 9s ease-in-out infinite alternate; }
@@ -565,7 +567,6 @@ footer::before { content: ''; position: absolute; width: 500px; height: 500px; b
   <canvas id="particle-canvas"></canvas>
   <div class="container">
     <div class="hero-content">
-      <div class="hero-badge"><span class="dot"></span>Social Media Analytics for Local Business</div>
       <h1 id="hero-h1">Know exactly what your competitors are doing on social media</h1>
       <p class="hero-sub">We collect, analyze and deliver monthly intelligence reports across Instagram, Facebook and TikTok — so you can make smarter marketing decisions.</p>
       <div class="hero-ctas">
@@ -848,7 +849,7 @@ footer::before { content: ''; position: absolute; width: 500px; height: 500px; b
           <li><i data-lucide="check" style="width:15px;height:15px"></i>Up to 15 competitors tracked</li>
           <li><i data-lucide="check" style="width:15px;height:15px"></i>Custom platform coverage</li>
           <li><i data-lucide="check" style="width:15px;height:15px"></i>Dedicated account manager</li>
-          <li><i data-lucide="check" style="width:15px;height:15px"></i>Weekly data updates + real-time alerts</li>
+          <li><i data-lucide="check" style="width:15px;height:15px"></i>Weekly data updates</li>
           <li><i data-lucide="check" style="width:15px;height:15px"></i>Audience overlap analysis</li>
           <li><i data-lucide="check" style="width:15px;height:15px"></i>Active ad intelligence</li>
           <li><i data-lucide="check" style="width:15px;height:15px"></i>Monthly strategy call</li>
@@ -1018,7 +1019,8 @@ footer::before { content: ''; position: absolute; width: 500px; height: 500px; b
 
 <!-- ══ CTA ══ -->
 <section id="cta">
-  <div class="container">
+  <canvas id="cta-canvas"></canvas>
+  <div class="container" style="position:relative;z-index:1;">
     <div class="anim cta-card">
       <div class="cta-proof-row">
         <div class="av-stack">
@@ -1432,6 +1434,110 @@ document.querySelectorAll('.service-card').forEach(card => {
         ctx.fillStyle = `rgba(59,130,246,${((1 - prog) * 0.9).toFixed(3)})`;
         ctx.fill();
       });
+    });
+  }
+
+  requestAnimationFrame(frame);
+})();
+
+/* ══ CTA PARTICLE FIELD ══ */
+(function () {
+  const canvas  = document.getElementById('cta-canvas');
+  if (!canvas) return;
+  const ctx     = canvas.getContext('2d');
+  const section = document.getElementById('cta');
+  let W, H, mouse = { x: -9999, y: -9999 };
+
+  function resize() {
+    W = canvas.width  = section.offsetWidth;
+    H = canvas.height = section.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  section.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+  }, { passive: true });
+  section.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; }, { passive: true });
+
+  const N = 80;
+  const dots = Array.from({ length: N }, (_, i) => ({
+    x: Math.random() * 1200, y: Math.random() * 600,
+    vx: (Math.random() - .5) * .4, vy: (Math.random() - .5) * .4,
+    r: 0.8 + Math.random() * 1.6,
+    phase: Math.random() * Math.PI * 2,
+    blue: i < N * 0.3,
+  }));
+
+  const CONN_DIST = 100, MOUSE_LINE = 140, MOUSE_REP = 90;
+
+  function frame(ts) {
+    requestAnimationFrame(frame);
+    if (!W || !H) { resize(); return; }
+    ctx.clearRect(0, 0, W, H);
+
+    dots.forEach(d => {
+      if (d.x < 0 || d.x > W) d.x = Math.random() * W;
+      if (d.y < 0 || d.y > H) d.y = Math.random() * H;
+      const dx = d.x - mouse.x, dy = d.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < MOUSE_REP && dist > 0) {
+        const f = (MOUSE_REP - dist) / MOUSE_REP * 0.8;
+        d.vx += (dx / dist) * f * 0.1;
+        d.vy += (dy / dist) * f * 0.1;
+      }
+      d.vx *= 0.985; d.vy *= 0.985;
+      const spd = Math.sqrt(d.vx * d.vx + d.vy * d.vy);
+      if (spd < 0.1) { d.vx += (Math.random() - .5) * .03; d.vy += (Math.random() - .5) * .03; }
+      d.x += d.vx; d.y += d.vy;
+      if (d.x < 0) { d.x = 0; d.vx = Math.abs(d.vx); }
+      if (d.x > W) { d.x = W; d.vx = -Math.abs(d.vx); }
+      if (d.y < 0) { d.y = 0; d.vy = Math.abs(d.vy); }
+      if (d.y > H) { d.y = H; d.vy = -Math.abs(d.vy); }
+    });
+
+    for (let i = 0; i < N; i++) {
+      for (let j = i + 1; j < N; j++) {
+        const dx = dots[i].x - dots[j].x, dy = dots[i].y - dots[j].y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < CONN_DIST * CONN_DIST) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(59,130,246,${((1 - Math.sqrt(d2) / CONN_DIST) * 0.1).toFixed(3)})`;
+          ctx.lineWidth = 0.8;
+          ctx.moveTo(dots[i].x, dots[i].y);
+          ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    dots.forEach(d => {
+      const dx = d.x - mouse.x, dy = d.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < MOUSE_LINE) {
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(59,130,246,${((1 - dist / MOUSE_LINE) * 0.22).toFixed(3)})`;
+        ctx.lineWidth = 0.8;
+        ctx.moveTo(mouse.x, mouse.y); ctx.lineTo(d.x, d.y);
+        ctx.stroke();
+      }
+    });
+
+    const t = ts * 0.001;
+    dots.forEach(d => {
+      const dx = d.x - mouse.x, dy = d.y - mouse.y;
+      const md = Math.sqrt(dx * dx + dy * dy);
+      const bright = md < MOUSE_REP ? 0.4 + (1 - md / MOUSE_REP) * 0.5 : 0;
+      const pulse  = 0.3 + 0.22 * Math.sin(d.phase + t * 0.7);
+      const alpha  = Math.min(1, pulse + bright);
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = d.blue
+        ? `rgba(59,130,246,${(alpha * 0.8).toFixed(3)})`
+        : `rgba(255,255,255,${(alpha * 0.45).toFixed(3)})`;
+      ctx.fill();
     });
   }
 
