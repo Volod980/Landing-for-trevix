@@ -605,7 +605,7 @@ footer::before { content: ''; position: absolute; width: 500px; height: 500px; b
           <div class="stat-flash-overlay"></div>
         </div>
         <div class="stat-item">
-          <span class="stat-num" data-target="3" data-suffix="x">0</span>
+          <span class="stat-num" data-target="1.7" data-suffix="x">0</span>
           <div class="stat-label">Avg Engagement Growth</div>
           <div class="stat-underline"></div>
           <div class="stat-flash-overlay"></div>
@@ -1130,7 +1130,8 @@ const statsObs = new IntersectionObserver(entries => {
     const start = performance.now();
     (function tick(now) {
       const p = Math.min((now - start) / 1400, 1);
-      el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target) + suffix;
+      const val = (1 - Math.pow(1 - p, 3)) * target;
+      el.textContent = (target % 1 !== 0 ? val.toFixed(1) : Math.round(val)) + suffix;
       if (p < 1) {
         requestAnimationFrame(tick);
       } else {
